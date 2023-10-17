@@ -36,7 +36,7 @@ function Results() {
     <div></div>
   ) : (
     <div>
-      <h2>Les compétences dont vous avez besoins:</h2>
+      <h2>Les compétences dont vous avez besoins: </h2>
       <StyledLink $isFullLink to='/freelances'>
         Découvrez nos profils
       </StyledLink>

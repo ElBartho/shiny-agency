@@ -1,5 +1,5 @@
 .DS_STORE
-node_modules
+node_modules/
 scripts/flow/*/.flowconfig
 .flowconfig
 *~
@@ -37,3 +37,6 @@ packages/react-devtools-inline/dist
 packages/react-devtools-shell/dist
 packages/react-devtools-timeline/dist
 .DS_Store
+node_modules
+node_modules
+node_modules
