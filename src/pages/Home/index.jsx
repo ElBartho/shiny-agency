@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import { StyledLink } from '../../utils/style/Atoms';
+import { useTheme } from '../../utils/hooks';
 import homeImage from '../../assets/home-illustration.svg';
 
 const HomeWrapper = styled.div`
@@ -14,7 +15,8 @@ const HomeContainer = styled.div`
   display: flex;
   flex-direction: row;
   max-width: 1200px;
-  background-color: ${colors.backgroundLight};
+  background-color: ${({ theme }) =>
+    theme === 'light' ? colors.backgroundLight : colors.backgroundDark};
 `;
 
 const LeftCol = styled.div`
@@ -31,6 +33,7 @@ const StyledTitle = styled.h2`
   padding-bottom: 30px;
   max-width: 280px;
   line-height: 50px;
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `;
 
 const Illustration = styled.img`
@@ -38,11 +41,13 @@ const Illustration = styled.img`
 `;
 
 function Home() {
+  const { theme } = useTheme();
+
   return (
     <HomeWrapper>
-      <HomeContainer>
+      <HomeContainer theme={theme}>
         <LeftCol>
-          <StyledTitle>
+          <StyledTitle theme={theme}>
             Repérez vos besoins, on s'occupe du reste, avec les meilleurs
             talents
           </StyledTitle>

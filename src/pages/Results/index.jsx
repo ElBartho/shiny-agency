@@ -52,7 +52,7 @@ const LoaderWrapper = styled.div`
   justify-content: center;
 `;
 
-function formatFetchParams(answers) {
+export function formatFetchParams(answers) {
   const answerNumbers = Object.keys(answers);
 
   return answerNumbers.reduce((previousParams, answerNumber, index) => {
@@ -63,16 +63,20 @@ function formatFetchParams(answers) {
   }, '');
 }
 
+export function formatJobList(title, listLength, index) {
+  if (index === listLength - 1) {
+    return title;
+  }
+  return `${title},`;
+}
+
 function Results() {
   const { theme } = useContext(ThemeContext);
   const { answers } = useContext(SurveyContext);
   const fetchParams = formatFetchParams(answers);
-  console.log('fetchParams+++++++++++++ ', fetchParams);
   const { data, isLoading, error } = useFetch(
     `http://localhost:8000/results?${fetchParams}`
   );
-
-  console.log('===== data =====', data);
 
   if (error) {
     return <span>Il y a un problème</span>;
@@ -99,8 +103,7 @@ function Results() {
               key={`result-title-${index}-${result.title}`}
               theme={theme}
             >
-              {result.title}
-              {index === resultsData.length - 1 ? '' : ','}
+              {formatJobList(result.title, resultsData.length, index)}
             </JobTitle>
           ))}
       </ResultsTitle>
